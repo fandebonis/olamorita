@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>holateamo</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f8ff;
+      font-family: monospace;
+      overflow: hidden;
+      margin: 0;
+    }
+    #scene {
+      position: relative;
+    }
+    #duck {
+      position: absolute;
+      right: 200px;
+      white-space: pre;
+      transition: transform 1s ease;
+    }
+    #flowers {
+      position: absolute;
+      left: 40px;
+      opacity: 0;
+      white-space: pre;
+      transition: opacity 1s ease;
+    }
+    #bunny {
+      position: absolute;
+      left: 200px;
+      white-space: pre;
+    }
+    #bunny.smile::after {
+      content: 'ppppppppppperosoytimida🥺🥺';
+      display: block;
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #ff69b4;
+      animation: fadeIn 1.5s ease;
+    }
+    /* Animación de fadeOut para el mensaje de desaparición */
+    #bunny.smile.fadeOut::after {
+      animation: fadeOut 3s ease forwards;
+    }
+    #message {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      right: ;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #4caf50;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    #teamMessage {
+      position: absolute;
+      top: 30%;
+      left: 0;
+      right: ;
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #ff69b4;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    /* Estilo para las imágenes giratorias */
+    .rotatingImage {
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin: -50px 0 0 -50px; /* Para centrar la imagen */
+      border-radius: 50%;
+      opacity: 0;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="scene">
+    <pre id="duck">     
+  .--.
+ /,..__\
+() {____}
+ ___( o)>
+ \ <_. )
+  `---'</pre>
+    <pre id="flowers">           _ _
+         _{ ' }_
+        { `.!.` }
+        ',_/Y\_,'
+          {_,_}
+            |
+          (\|/)
+            | 
+				  </pre>
+    <pre id="bunny">      
+      	/`))          
+   _.--'  //  ___
+  (  o    `'`.   `'..
+  `.____.` /         \
+    _/   / \         |_
+   /_/__/--/______ __/_}}</pre>
+    <div id="message">negrateniaqser....</div>
+    <div id="teamMessage"></div>
+
+    <!-- Imágenes girando (aparecen después de "TEAMOTOCSICA") -->
+    <img src="https://via.placeholder.com/100" class="rotatingImage" style="animation-delay: 7s;">
+    <img src="https://via.placeholder.com/100" class="rotatingImage" style="animation-delay: 7.5s;">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT_NFQ4TTIRh9Atc3GLIcvz_-1Rhq7Gyk3fw&s" class="rotatingImage" style="animation-delay: 8s;">
+  </div>
+
+  <script>
+    const duck = document.getElementById('duck');
+    const flowers = document.getElementById('flowers');
+    const bunny = document.getElementById('bunny');
+    const message = document.getElementById('message');
+    const teamMessage = document.getElementById('teamMessage');
+    const rotatingImages = document.querySelectorAll('.rotatingImage');
+
+    let step = 0;
+
+    function animate() {
+      if (step === 0) {
+        // El pato se mueve a la derecha gradualmente
+        duck.style.transform = "translateX(250px)";
+        step++;
+      } else if (step === 1) {
+        flowers.style.opacity = 1;
+        step++;
+
+        setTimeout(() => {
+          flowers.style.opacity = 0;
+
+          setTimeout(() => {
+            message.style.opacity = 1;
+
+            setTimeout(() => {
+              message.style.opacity = 0;
+
+              setTimeout(() => {
+                // Mover el pato a la derecha de forma gradual
+                duck.style.transform = "translateX(415px)";
+              }, 500);
+            }, 2000);
+          }, 2000);
+        }, 3000);
+      } else if (step === 2) {
+        bunny.classList.add('smile');
+
+        // Desaparecer el mensaje después de 3 segundos con animación
+        setTimeout(() => {
+          bunny.classList.add('fadeOut'); // Se agrega la clase de fadeOut para la animación
+        }, 2500); // 3 segundos después de la aparición
+
+        // Después de 5 segundos, mostrar "TEAMOTOCSICA" y ocultar todo lo demás
+        setTimeout(() => {
+          message.style.opacity = 0;
+          bunny.style.opacity = 0;
+          flowers.style.opacity = 0;
+          duck.style.opacity = 0;
+          teamMessage.style.opacity = 1;
+
+          // Hacer visibles las imágenes giratorias después de mostrar "TEAMOTOCSICA"
+          rotatingImages.forEach(img => {
+            img.style.opacity = 1;
+          });
+
+        }, 7200); // 5 segundos
+
+        clearInterval(interval);
+      }
+    }
+
+    const interval = setInterval(animate, 1500);
+  </script>
+</body>
+</html>
