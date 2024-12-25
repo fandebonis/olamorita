@@ -129,9 +129,9 @@
     <div id="message">negrateniaqser....</div>
     <div id="teamMessage"></div>
 
-    <!-- Imágenes girando (aparecen después de "TEAMOTOCSICA") -->
-    <img src="https://via.placeholder.com/100" class="rotatingImage" style="animation-delay: 7s;">
-    <img src="https://via.placeholder.com/100" class="rotatingImage" style="animation-delay: 7.5s;">
+
+    <img src="https://i.ibb.co/ZcP1J9Q/Captura-de-pantalla-2024-03-30-203726.png" class="rotatingImage" style="animation-delay: 7s;">
+    <img src="https://i.ibb.co/ZcP1J9Q/Captura-de-pantalla-2024-03-30-203726.png" class="rotatingImage" style="animation-delay: 7.5s;">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT_NFQ4TTIRh9Atc3GLIcvz_-1Rhq7Gyk3fw&s" class="rotatingImage" style="animation-delay: 8s;">
   </div>
 
@@ -147,7 +147,6 @@
 
     function animate() {
       if (step === 0) {
-        // El pato se mueve a la derecha gradualmente
         duck.style.transform = "translateX(250px)";
         step++;
       } else if (step === 1) {
@@ -164,7 +163,7 @@
               message.style.opacity = 0;
 
               setTimeout(() => {
-                // Mover el pato a la derecha de forma gradual
+
                 duck.style.transform = "translateX(415px)";
               }, 500);
             }, 2000);
@@ -173,12 +172,11 @@
       } else if (step === 2) {
         bunny.classList.add('smile');
 
-        // Desaparecer el mensaje después de 3 segundos con animación
-        setTimeout(() => {
-          bunny.classList.add('fadeOut'); // Se agrega la clase de fadeOut para la animación
-        }, 2500); // 3 segundos después de la aparición
 
-        // Después de 5 segundos, mostrar "TEAMOTOCSICA" y ocultar todo lo demás
+        setTimeout(() => {
+          bunny.classList.add('fadeOut')
+        }, 2500);
+
         setTimeout(() => {
           message.style.opacity = 0;
           bunny.style.opacity = 0;
@@ -186,12 +184,11 @@
           duck.style.opacity = 0;
           teamMessage.style.opacity = 1;
 
-          // Hacer visibles las imágenes giratorias después de mostrar "TEAMOTOCSICA"
           rotatingImages.forEach(img => {
             img.style.opacity = 1;
           });
 
-        }, 7200); // 5 segundos
+        }, 7200);
 
         clearInterval(interval);
       }
